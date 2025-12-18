@@ -21,6 +21,12 @@
         "pages": [
           "fivem/txadmin-setup"
         ]
+      },
+      {
+        "group": "Misc",
+        "pages": [
+          "misc/mariadb-setup"
+        ]
       }
     ],
     "global": {
