@@ -23,6 +23,12 @@
         ]
       },
       {
+        "group": "Windows VPS",
+        "pages": [
+          "windows-vps/add-user-rdp"
+        ]
+      },
+      {
         "group": "Misc",
         "pages": [
           "misc/mariadb-setup"
