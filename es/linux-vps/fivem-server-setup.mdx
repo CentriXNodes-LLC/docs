@@ -1,0 +1,224 @@
+---
+title: "Configuración de servidor FiveM"
+description: "Cómo configurar un servidor FiveM en un VPS Linux"
+icon: "server"
+---
+
+## Paso 1: Conéctate a tu VPS Linux
+
+Puedes conectarte a tu VPS usando una herramienta SSH como putty, que puedes encontrar [aquí](https://putty.org/index.html)
+
+Al abrir putty verás una interfaz como esta
+
+<img
+  src="/images/linux/fivemserversetup/putty.jpg"
+  alt="Interfaz de Putty"
+/>
+
+Al llegar a esta pantalla, tendrás que introducir dos cosas. La primera será tu Host Name (dirección IP) y la segunda será el puerto (siempre 22 en la mayoría de los casos).
+
+Después de introducir esa información, verás una pantalla como esta
+
+<img
+src="/images/linux/fivemserversetup/puttylogin.jpg"
+alt="Inicio de sesión en Putty"
+/>
+Introduce el nombre de usuario que recibiste por correo electrónico cuando compraste tu VPS. (La mayoría de las veces es root)
+
+<img
+  src="/images/linux/fivemserversetup/puttypassword.jpg"
+  alt="Contraseña de Putty"
+/>
+
+A continuación llegarás a la página de arriba: introduce tu contraseña, que se encuentra en el mismo correo electrónico que recibiste al comprar tu VPS.
+
+
+## Paso 2: Ve a tu directorio home
+
+Puedes ir a tu directorio home pegando o escribiendo este comando.
+
+```bash
+cd /home
+```
+
+## Paso 3: Crea tu directorio de FiveM
+
+Crea tu directorio de FiveM y entra en él.
+
+```bash
+mkdir fivem
+cd fivem
+```
+
+## Paso 4: Instala los artifacts de FiveM en tu directorio
+
+Puedes obtener los artifacts de FiveM para Linux [aquí](https://runtime.fivem.net/artifacts/fivem/build_proot_linux/master/)
+
+Cuando entres en ese sitio web, verás una página como esta.
+
+<img
+  src="/images/linux/fivemserversetup/fivemlinux.jpg"
+  alt="Sitio web de artifacts de FiveM para Linux"
+/>
+
+Haz clic derecho en los artifacts que quieras y pulsa copiar la dirección del enlace.
+
+Vuelve a tu VPS Linux y ejecuta los siguientes comandos (reemplaza el enlace por el enlace de tus artifacts)
+
+```bash
+wget https://runtime.fivem.net/artifacts/fivem/build_proot_linux/master/23683-1062db8a7b8e0c03f7c159be4cbfa181f49b2cc1/fx.tar.xz
+```
+Descargará todos los archivos de los artifacts. Cuando termine, ejecuta el siguiente comando
+
+```bash
+tar -xvf fx.tar.xz
+```
+Descomprimirá los artifacts y los instalará en el directorio.
+
+
+## Paso 5: Inicia una sesión con tmux
+
+Para asegurarte de que tu servidor siga activo tras cerrar la ventana de putty, debes iniciar una sesión de tmux.
+El 90 % de las veces tmux ya está instalado, pero por si acaso ejecuta los siguientes comandos
+
+Debian/Ubuntu/Mint/Kali:
+```bash
+sudo apt update && sudo apt install tmux -y
+```
+
+RHEL/CentOS/Rocky Linux/Alma Linux (RHEL 8+):
+```bash
+sudo dnf install tmux -y
+# For older CentOS/RHEL versions, you may need EPEL:
+# sudo yum install epel-release -y && sudo yum install tmux
+```
+Verifica la instalación escribiendo
+```bash
+tmux -v
+```
+Después inicia tu sesión escribiendo
+```bash
+tmux
+```
+
+## Paso 6: Abre los puertos de FiveM
+
+Necesitarás redirigir los puertos de FiveM para poder usar y configurar txadmin y unirte al servidor.
+Hazlo ejecutando los siguientes comandos
+
+```bash
+ufw allow 30120/tcp
+ufw allow 30120/udp
+ufw allow 40120/tcp
+```
+
+## Paso 7: Inicia tu servidor
+
+Ejecuta el siguiente comando para iniciar tu servidor
+
+```bash
+./run.sh
+```
+
+Verás esta pantalla tras iniciar tu servidor.
+
+<img
+  src="/images/linux/fivemserversetup/startfivemserver.jpg"
+  alt="Pantalla de txadmin de FiveM en un VPS Linux"
+/>
+
+Ve al sitio web que aparece en esa pantalla, introduce el PIN de la captura de pantalla y sigue los siguientes pasos.
+
+## Paso 8: Configura el nombre de tu servidor
+
+Tras acceder al panel de txAdmin, se te pedirá que configures tu servidor. Elige un nombre de servidor corto y fácil de recordar, que se utilizará en la interfaz de txAdmin y en los mensajes de Chat/Discord (por ejemplo, `tutorial`, `examplerp`, `dev`).
+
+<img
+  src="/images/txAdmin/txAdminTutorial-image3.png"
+  alt="Página de configuración de txAdmin"
+/>
+
+## Paso 9: Elige el tipo de despliegue
+
+A continuación, tendrás que seleccionar cómo quieres configurar tu servidor. txAdmin ofrece varias opciones de despliegue:
+
+<img
+  src="/images/txAdmin/txAdminTutorial-image4.png"
+  alt="Selección de tipo de despliegue en txAdmin"
+/>
+
+### Recetas populares (recomendado)
+
+Es la opción más sencilla para principiantes. Selecciona una plantilla de una lista curada de las favoritas de la comunidad. Incluye QBCore, ESX y una plantilla Default para que la personalices.
+
+<Tip>
+  Elige **Popular Recipes** si eres nuevo en la configuración de servidores FiveM o quieres empezar rápido con un framework preconfigurado.
+</Tip>
+
+### Otras opciones de despliegue:
+
+- **Existing Server Data**: selecciona una carpeta de datos de servidor existente en el host. Úsala solo si ya tienes un `server.cfg` y una carpeta `resources`.
+  
+- **Remote URL Template**: basada en una URL de receta en formato YAML. Tendrás la opción de editar la receta antes de ejecutarla.
+  
+- **Custom Template**: recomendada si tienes un servidor personalizado basado en recetas o si estás escribiendo tu propia receta. Se te pedirá la receta justo después de esta página.
+
+<Note>
+  Para la mayoría de los usuarios, **Popular Recipes** es la opción recomendada, ya que proporciona configuraciones de servidor probadas y funcionales.
+</Note>
+
+## Paso 10: Revisa la receta
+
+Después de seleccionar el tipo de despliegue, se te mostrará la configuración de la receta. Verás la configuración YAML que se utilizará para preparar tu servidor.
+
+<img
+  src="/images/txAdmin/txAdminTutorial-image5.png"
+  alt="Revisar la receta en txAdmin"
+/>
+
+La receta incluye:
+- **Versión del motor** (por ejemplo, `$engine: 3`)
+- **Nombre del servidor** y descripción
+- **Tareas** que se ejecutarán (descarga de recursos, configuración de archivos, etc.)
+- Información del **repositorio de origen** (desde donde se descargarán los recursos)
+
+Puedes revisar la receta y hacer los cambios que necesites. Sin embargo, para la mayoría de los usuarios la configuración por defecto funciona perfectamente.
+
+<Tip>
+  Simplemente haz clic en **Next** para continuar con la configuración por defecto de la receta. La receta está preconfigurada para funcionar sin cambios.
+</Tip>
+
+## Paso 11: Introduce la clave de registro del servidor
+
+Ahora debes introducir tu FiveM Server Registration Key (antes conocida como License Key). Esta clave es necesaria para ejecutar un servidor FiveM.
+
+<img
+  src="/images/txAdmin/txAdminTutorial-image6.png"
+  alt="Entrada de la clave de registro del servidor"
+/>
+
+La clave se puede obtener en el [Cfx.re Portal](https://portal.cfx.re/). Introduce tu clave de registro en el campo correspondiente.
+
+<img
+  src="/images/txAdmin/txAdminTutorial-image7.png"
+  alt="Campo de clave de registro del servidor"
+/>
+
+<Note>
+  Si aún no tienes una clave de registro, visita el Cfx.re Portal para crear una. Para más información, consulta la guía: [How to create a registration key](https://docs.fivem.net/docs/server-manual/setting-up-a-server/#license-key-registration).
+</Note>
+
+Una vez que hayas introducido tu clave, haz clic en **Run Recipe** para continuar con la configuración del servidor.
+
+## Paso 12: Configura server.cfg
+
+Tras ejecutarse la receta, se te mostrará el editor del archivo `server.cfg`. Este es el archivo principal de configuración de tu servidor, donde puedes personalizar diversos ajustes.
+
+<img
+  src="/images/txAdmin/txAdminTutorial-image8.png"
+  alt="Configurar server.cfg"
+/>
+
+<Check>
+  **¡Felicidades!** Si has seguido todos los pasos correctamente, tu servidor FiveM debería estar en funcionamiento. Puedes acceder a tu panel de txAdmin para administrar tu servidor, ver a los jugadores y configurar ajustes adicionales. ¡Todo debería estar listo!
+</Check>

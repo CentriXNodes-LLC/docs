@@ -1,0 +1,59 @@
+---
+title: "Configuración de MariaDB"
+description: "Cómo configurar MariaDB en un servidor Linux"
+icon: "database"
+---
+
+### Paso 1: Actualiza el sistema
+Antes de instalar MariaDB, es buena práctica actualizar la lista de paquetes de tu sistema y actualizar los paquetes existentes a sus últimas versiones. Abre una terminal y ejecuta los siguientes comandos:
+
+```bash
+sudo apt-get update
+sudo apt-get upgrade
+```
+### Paso 2: Instala MariaDB
+Una vez que tu sistema esté actualizado, puedes instalar MariaDB usando el gestor de paquetes. Para sistemas basados en Ubuntu o Debian, usa el siguiente comando:
+
+```bash
+sudo apt-get install mariadb-server
+```
+Para sistemas basados en CentOS o Red Hat, usa:
+```bash
+sudo yum install mariadb-server
+```
+### Paso 3: Asegura la instalación de MariaDB
+Después de la instalación, es crucial asegurar tu instalación de MariaDB. Ejecuta el siguiente comando para iniciar el script de seguridad:
+
+```bash
+sudo mysql_secure_installation
+```
+Sigue las indicaciones para establecer una contraseña de root, eliminar usuarios anónimos, deshabilitar el inicio de sesión remoto de root, eliminar la base de datos de prueba y recargar las tablas de privilegios.
+
+### Paso 4: Inicia y habilita el servicio MariaDB
+Para asegurarte de que MariaDB se inicie automáticamente al arrancar, puedes habilitar el servicio con el siguiente comando:
+
+```bash
+sudo systemctl enable mariadb
+```
+Para iniciar el servicio MariaDB inmediatamente, usa:
+```bash
+sudo systemctl start mariadb
+```
+### Paso 5: Accede a MariaDB
+Puedes acceder al servidor MariaDB usando el cliente MySQL. Para iniciar sesión como usuario root, ejecuta:
+
+```bash
+sudo mysql -u root -p
+```
+Introduce la contraseña de root que estableciste durante el proceso de instalación segura para acceder a la interfaz de línea de comandos de MariaDB.
+### Paso 6: Crea una nueva base de datos y usuario (opcional)
+Si necesitas crear una nueva base de datos y usuario, puedes hacerlo con los siguientes comandos SQL:
+
+```sql
+CREATE DATABASE mydatabase;
+CREATE USER 'myuser'@'localhost' IDENTIFIED BY 'mypassword';
+```
+
+<Check>
+**¡Felicidades!** Has configurado con éxito MariaDB en tu servidor Linux. Ya puedes empezar a usarlo para administrar tus bases de datos.
+</Check>

@@ -1,0 +1,148 @@
+---
+title: "Añadir usuario"
+description: "Cómo configurar Escritorio Remoto para usuarios adicionales en un VPS con Windows o Servidor Dedicado (con SO Windows Server)"
+icon: "users"
+---
+
+## Paso 1: Abrir Administración de equipos
+
+Para empezar a añadir un nuevo usuario con acceso a Escritorio Remoto, debes abrir Administración de equipos. Puedes hacerlo buscando "Administración de equipos" en la barra de búsqueda de Windows.
+
+<img
+  src="/images/windows/rdp-add-user/rdpUserTutorial-Image1.png"
+  alt="Buscar Administración de equipos"
+/>
+
+Haz clic en la aplicación **Administración de equipos** en los resultados de búsqueda para abrirla.
+
+## Paso 2: Navegar a Usuarios y grupos locales
+
+Una vez abierta Administración de equipos, verás una estructura de árbol en el lado izquierdo. Navega a **Herramientas del sistema** → **Usuarios y grupos locales**.
+
+<img
+  src="/images/windows/rdp-add-user/rdpUserTutorial-Image2.png"
+  alt="Navegar a Usuarios y grupos locales"
+/>
+
+La flecha roja indica que debes seleccionar **Usuarios y grupos locales** en el panel de navegación.
+
+## Paso 3: Crear un nuevo usuario
+
+Expande **Usuarios y grupos locales** y selecciona **Usuarios**. Haz clic derecho en **Usuarios** en el panel derecho y selecciona **Nuevo usuario** en el menú contextual.
+
+<img
+  src="/images/windows/rdp-add-user/rdpUserTutorial-Image3.png"
+  alt="Crear nuevo usuario"
+/>
+
+## Paso 4: Rellenar los datos del usuario
+
+Aparecerá un cuadro de diálogo "Nuevo usuario" donde debes introducir la información del nuevo usuario. Rellena los campos obligatorios que indica la flecha roja.
+
+<img
+  src="/images/windows/rdp-add-user/rdpUserTutorial-Image4.png"
+  alt="Cuadro de diálogo Nuevo usuario con campos vacíos"
+/>
+
+Rellena los siguientes campos:
+- **Nombre de usuario**: Introduce un nombre de usuario para la nueva cuenta
+- **Nombre completo**: (Opcional) Introduce el nombre completo del usuario
+- **Descripción**: (Opcional) Añade una descripción para esta cuenta
+- **Contraseña**: Introduce una contraseña segura para la cuenta
+- **Confirmar contraseña**: Vuelve a introducir la contraseña para confirmarla
+
+<Note>
+  Asegúrate de usar una contraseña segura que cumpla los requisitos de seguridad de Windows. Se recomienda utilizar una combinación de letras mayúsculas, letras minúsculas, números y caracteres especiales.
+</Note>
+
+## Paso 5: Desmarcar el requisito de cambio de contraseña
+
+Después de rellenar los datos del usuario, **desmarca** la casilla "El usuario debe cambiar la contraseña en el siguiente inicio de sesión", como se muestra en la imagen.
+
+<img
+  src="/images/windows/rdp-add-user/rdpUserTutorial-Image5.png"
+  alt="Desmarcar El usuario debe cambiar la contraseña en el siguiente inicio de sesión"
+/>
+
+## Paso 6: Crear la cuenta de usuario
+
+Después de desmarcar el requisito de cambio de contraseña, haz clic en el botón **Crear** que indica la flecha roja.
+
+<img
+  src="/images/windows/rdp-add-user/rdpUserTutorial-Image6.png"
+  alt="Haz clic en el botón Crear"
+/>
+
+Esto creará la cuenta de usuario. Puedes crear varios usuarios haciendo clic de nuevo en **Crear**, o haz clic en **Cerrar** cuando hayas terminado.
+
+## Paso 7: Navegar a Grupos
+
+Ahora que se ha creado la cuenta de usuario, debes añadirla al grupo **Usuarios de escritorio remoto**. En el panel de navegación izquierdo, expande **Usuarios y grupos locales** y selecciona **Grupos**.
+
+<img
+  src="/images/windows/rdp-add-user/rdpUserTutorial-Image7.png"
+  alt="Navegar a Grupos"
+/>
+
+La flecha roja indica que debes seleccionar **Grupos** en el árbol de navegación.
+
+## Paso 8: Seleccionar el grupo Usuarios de escritorio remoto
+
+En el panel central verás una lista de todos los grupos locales. Busca y selecciona el grupo **Usuarios de escritorio remoto** en la lista.
+
+<img
+  src="/images/windows/rdp-add-user/rdpUserTutorial-Image8.png"
+  alt="Seleccionar el grupo Usuarios de escritorio remoto"
+/>
+
+La flecha roja apunta al grupo **Usuarios de escritorio remoto**, que debería quedar resaltado al seleccionarlo.
+
+## Paso 9: Abrir las propiedades de Usuarios de escritorio remoto
+
+Haz clic derecho en el grupo **Usuarios de escritorio remoto** y selecciona **Propiedades** en el menú contextual, o haz doble clic sobre él para abrir sus propiedades. Se abrirá el cuadro de diálogo "Propiedades de Usuarios de escritorio remoto".
+
+<img
+  src="/images/windows/rdp-add-user/rdpUserTutorial-Image9.png"
+  alt="Cuadro de diálogo Propiedades de Usuarios de escritorio remoto"
+/>
+
+El cuadro de diálogo muestra la información general del grupo y una lista de los miembros actuales. Haz clic en el botón **Agregar** que indica la flecha roja para añadir un usuario a este grupo.
+
+## Paso 10: Introducir el nombre de usuario
+
+Se abrirá el cuadro de diálogo "Seleccionar usuarios". Escribe el nombre del usuario que creaste anteriormente en el campo de texto.
+
+<img
+  src="/images/windows/rdp-add-user/rdpUserTutorial-Image10.png"
+  alt="Introducir el nombre de usuario en el cuadro de diálogo Seleccionar usuarios"
+/>
+
+También puedes hacer clic en **Opciones avanzadas** para buscar usuarios, o en **Comprobar nombres** para verificar que el nombre de usuario es correcto.
+
+## Paso 11: Verificar el nombre de usuario
+
+Haz clic en **Comprobar nombres** para verificar el nombre de usuario. Windows subrayará el nombre si es válido y se reconoce.
+
+<img
+  src="/images/windows/rdp-add-user/rdpUserTutorial-Image11.png"
+  alt="Verificar el nombre de usuario con Comprobar nombres"
+/>
+
+Una vez que el nombre de usuario esté verificado y subrayado, haz clic en **Aceptar** para continuar.
+
+## Paso 12: Completar la incorporación del usuario al grupo
+
+Después de hacer clic en **Aceptar**, el usuario se añadirá al grupo Usuarios de escritorio remoto. El cuadro de diálogo "Seleccionar usuarios" se cerrará y volverás al cuadro "Propiedades de Usuarios de escritorio remoto", donde podrás ver al usuario en la sección Miembros.
+
+<img
+  src="/images/windows/rdp-add-user/rdpUserTutorial-Image12.png"
+  alt="Usuario añadido al grupo Usuarios de escritorio remoto"
+/>
+
+Haz clic en **Aceptar** para cerrar el cuadro de diálogo "Propiedades de Usuarios de escritorio remoto" y completar la configuración.
+
+---
+
+<Check>
+  **¡Enhorabuena!** Has creado correctamente una nueva cuenta de usuario. Ya puedes intentar iniciar sesión mediante Escritorio Remoto con las nuevas credenciales.
+</Check>

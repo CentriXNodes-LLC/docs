@@ -1,0 +1,133 @@
+---
+title: "txAdmin de FiveM"
+description: "Cómo configurar txAdmin en el Panel de Juegos de CentrixNodes"
+icon: "house"
+---
+
+## Paso 1: Inicia tu servidor de FiveM
+
+Cuando inicies tu servidor de FiveM por primera vez, txAdmin se inicializará automáticamente. Fíjate en la salida de la consola, que muestra información importante.
+
+<img
+  src="/images/txAdmin/txAdminTutorial-image1.png"
+  alt="Salida de la consola de txAdmin"
+/>
+
+En la consola verás un mensaje que dice **"All ready! Please access:"**
+
+También verás un **código PIN** que aparece debajo con el texto **"Use the PIN below to register:"**
+
+<Note>
+  Asegúrate de anotar el código PIN: lo necesitarás en el siguiente paso para configurar tu cuenta maestra.
+</Note>
+
+## Paso 2: Accede al panel de txAdmin
+
+Copia la URL que incluye la dirección IP que se muestra en tu consola y pégala en tu navegador web.
+
+<img
+  src="/images/txAdmin/txAdminTutorial-image2.png"
+  alt="URL y PIN de txAdmin"
+/>
+
+## Paso 3: Configura el nombre de tu servidor
+
+Después de acceder al panel de txAdmin, se te pedirá que configures tu servidor. Elige un nombre de servidor corto y fácil de recordar que se usará en la interfaz de txAdmin y en los mensajes de Chat/Discord (por ejemplo, `tutorial`, `examplerp`, `dev`).
+
+<img
+  src="/images/txAdmin/txAdminTutorial-image3.png"
+  alt="Página de configuración de txAdmin"
+/>
+
+## Paso 4: Elige tu tipo de despliegue
+
+A continuación, deberás seleccionar cómo quieres configurar tu servidor. txAdmin ofrece varias opciones de despliegue:
+
+<img
+  src="/images/txAdmin/txAdminTutorial-image4.png"
+  alt="Selección del tipo de despliegue en txAdmin"
+/>
+
+### Recetas populares (recomendado)
+
+Esta es la opción más sencilla para principiantes. Selecciona una plantilla de una lista curada de favoritas por la comunidad. Incluye QBCore, ESX y una plantilla predeterminada para que la personalices.
+
+<Tip>
+  Elige **Popular Recipes** si eres nuevo en la configuración de servidores de FiveM o quieres empezar rápido con un framework preconfigurado.
+</Tip>
+
+### Otras opciones de despliegue:
+
+- **Existing Server Data**: Selecciona una carpeta de datos de servidor existente en el host. Úsalo solo si ya tienes un `server.cfg` y una carpeta `resources`.
+
+- **Remote URL Template**: Basado en una URL de receta en formato YAML. Tendrás la opción de editar la receta antes de ejecutarla.
+
+- **Custom Template**: Recomendado si tienes un servidor personalizado basado en receta o si estás escribiendo tu propia receta. Se te pedirá la receta justo después de esta página.
+
+<Note>
+  Para la mayoría de usuarios, **Popular Recipes** es la opción recomendada, ya que proporciona configuraciones de servidor probadas y funcionales.
+</Note>
+
+## Paso 5: Revisa la receta
+
+Después de seleccionar tu tipo de despliegue, verás la configuración de la receta. Esto te muestra la configuración YAML que se utilizará para configurar tu servidor.
+
+<img
+  src="/images/txAdmin/txAdminTutorial-image5.png"
+  alt="Revisar receta de txAdmin"
+/>
+
+La receta incluye:
+- **Versión del motor** (por ejemplo, `$engine: 3`)
+- **Nombre del servidor** y descripción
+- **Tareas** que se ejecutarán (descargar recursos, configurar archivos, etc.)
+- Información del **repositorio de origen** (desde donde se descargarán los recursos)
+
+Puedes revisar la receta y hacer cambios si es necesario. Sin embargo, para la mayoría de usuarios, la configuración predeterminada funciona perfectamente.
+
+<Tip>
+  Simplemente haz clic en **Next** para continuar con la configuración de receta predeterminada. La receta está preconfigurada para funcionar sin problemas.
+</Tip>
+
+## Paso 6: Introduce la clave de registro del servidor
+
+Ahora necesitas introducir tu Clave de Registro de Servidor de FiveM (anteriormente conocida como Clave de Licencia). Esta clave es necesaria para ejecutar un servidor de FiveM.
+
+<img
+  src="/images/txAdmin/txAdminTutorial-image6.png"
+  alt="Entrada de clave de registro del servidor"
+/>
+
+La clave se puede obtener en el [Portal de Cfx.re](https://portal.cfx.re/). Introduce tu clave de registro en el campo correspondiente.
+
+<img
+  src="/images/txAdmin/txAdminTutorial-image7.png"
+  alt="Campo de clave de registro del servidor"
+/>
+
+<Note>
+  Si aún no tienes una clave de registro, visita el Portal de Cfx.re para crear una. Para más información, consulta la guía: [Cómo crear una clave de registro](https://docs.fivem.net/docs/server-manual/setting-up-a-server/#license-key-registration).
+</Note>
+
+Una vez que hayas introducido tu clave, haz clic en **Run Recipe** para continuar con la configuración del servidor.
+
+## Paso 7: Configura server.cfg
+
+Después de que se ejecute la receta, verás el editor del archivo `server.cfg`. Este es el archivo de configuración principal de tu servidor, donde puedes personalizar varios ajustes.
+
+<img
+  src="/images/txAdmin/txAdminTutorial-image8.png"
+  alt="Configurar server.cfg"
+/>
+
+<Tip>
+  Si estás usando un panel de juego, asegúrate de comprobar el puerto asignado en el panel y actualizar los ajustes `endpoint_add_tcp` y `endpoint_add_udp` en el server.cfg para que coincidan con tu puerto de juego correcto.
+</Tip>
+
+Haz clic en **Save & Run Server** para iniciar tu servidor de FiveM.
+
+---
+
+<Check>
+  **¡Felicidades!** Si has seguido todos los pasos correctamente, tu servidor de FiveM ya debería estar en funcionamiento. Puedes acceder a tu panel de txAdmin para administrar tu servidor, ver a los jugadores y configurar ajustes adicionales. ¡Todo debería estar listo!
+</Check>
