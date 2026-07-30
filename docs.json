@@ -12,54 +12,117 @@
     "dark": "/images/Favicon03.svg"
   },
   "navigation": {
-    "tabs": [
+    "languages": [
       {
-        "tab": "Guides",
-        "groups": [
+        "language": "en",
+        "tabs": [
           {
-            "group": "Getting started",
-            "pages": ["index"]
-          },
-          {
-            "group": "Game hosting",
-            "pages": [
+            "tab": "Guides",
+            "groups": [
               {
-                "group": "FiveM",
-                "pages": ["fivem/txadmin-setup"]
+                "group": "Getting started",
+                "pages": ["index"]
               },
               {
-                "group": "Control panel",
-                "expanded": true,
+                "group": "Game hosting",
                 "pages": [
-                  "game/sftp",
-                  "game/2fa",
-                  "game/users",
-                  "game/backups",
-                  "game/databases"
+                  {
+                    "group": "FiveM",
+                    "pages": ["fivem/txadmin-setup"]
+                  },
+                  {
+                    "group": "Control panel",
+                    "expanded": true,
+                    "pages": [
+                      "game/sftp",
+                      "game/2fa",
+                      "game/users",
+                      "game/backups",
+                      "game/databases"
+                    ]
+                  }
+                ]
+              },
+              {
+                "group": "Web hosting",
+                "pages": ["web/ssh"]
+              },
+              {
+                "group": "VPS hosting",
+                "pages": [
+                  {
+                    "group": "Windows VPS",
+                    "pages": [
+                      "windows-vps/add-user-rdp",
+                      "windows-vps/fivem-server-setup",
+                      "windows-vps/mariadb-setup"
+                    ]
+                  },
+                  {
+                    "group": "Linux VPS",
+                    "pages": [
+                      "linux-vps/fivem-server-setup",
+                      "linux-vps/mariadb-setup"
+                    ]
+                  }
                 ]
               }
             ]
-          },
+          }
+        ]
+      },
+      {
+        "language": "es",
+        "tabs": [
           {
-            "group": "Web hosting",
-            "pages": ["web/ssh"]
-          },
-          {
-            "group": "VPS hosting",
-            "pages": [
+            "tab": "Guías",
+            "groups": [
               {
-                "group": "Windows VPS",
+                "group": "Primeros pasos",
+                "pages": ["es/index"]
+              },
+              {
+                "group": "Hospedaje de juegos",
                 "pages": [
-                  "windows-vps/add-user-rdp",
-                  "windows-vps/fivem-server-setup",
-                  "windows-vps/mariadb-setup"
+                  {
+                    "group": "FiveM",
+                    "pages": ["es/fivem/txadmin-setup"]
+                  },
+                  {
+                    "group": "Panel de control",
+                    "expanded": true,
+                    "pages": [
+                      "es/game/sftp",
+                      "es/game/2fa",
+                      "es/game/users",
+                      "es/game/backups",
+                      "es/game/databases"
+                    ]
+                  }
                 ]
               },
               {
-                "group": "Linux VPS",
+                "group": "Hospedaje web",
+                "pages": ["es/web/ssh"]
+              },
+              {
+                "group": "Hospedaje VPS",
                 "pages": [
-                  "linux-vps/fivem-server-setup",
-                  "linux-vps/mariadb-setup"
+                  {
+                    "group": "VPS Windows",
+                    "pages": [
+                      "es/windows-vps/add-user-rdp",
+                      "es/windows-vps/fivem-server-setup",
+                      "es/windows-vps/mariadb-setup"
+                    ]
+                  },
+                  {
+                    "group": "VPS Linux",
+                    "pages": [
+                      "es/linux-vps/fivem-server-setup",
+                      "es/linux-vps/mariadb-setup"
+                    ]
+                  }
                 ]
               }
             ]

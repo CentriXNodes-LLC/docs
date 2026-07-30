@@ -1,0 +1,45 @@
+---
+title: "Conectarse por SSH"
+description: "Aprende a conectarte por SSH a nuestro servidor web."
+icon: "server"
+---
+
+Para mejorar la seguridad en nuestros servidores de alojamiento web compartido, hemos cambiado el puerto SSH predeterminado del estándar `22`.
+
+## Cómo conectarse
+
+Para conectarte a nuestro servidor de alojamiento web compartido a través de SSH, deberás especificar el puerto `2333` en tu comando SSH.
+
+Utiliza la siguiente estructura de comando desde tu terminal o símbolo del sistema:
+
+```bash
+ssh <username>@<shared_server_ip> -p 2333
+```
+
+### Ejemplo
+
+Si la IP del servidor compartido es `192.168.1.50` y tu nombre de usuario es `johndoe`, el comando sería:
+
+```bash
+ssh johndoe@192.168.1.50 -p 2333
+```
+
+<Warning>
+Asegúrate de reemplazar `<username>` con tu nombre de usuario y `<shared_server_ip>` con la dirección IP del servidor de alojamiento web compartido. Normalmente puedes encontrar esta información en tu correo de bienvenida o en el área de cliente.
+</Warning>
+
+### Uso de PuTTY
+
+Si utilizas PuTTY como cliente SSH, puedes especificar el puerto personalizado directamente en la pantalla de configuración de la sesión. Simplemente cambia el valor del campo **Port** a `2333` antes de hacer clic en Open.
+
+<img
+  src="/images/web/web-putty-ssh-tutorial.png"
+  alt="Configuración del puerto en PuTTY"
+/>
+
+## ¿Por qué usar un puerto personalizado?
+Cambiar el puerto SSH predeterminado es una práctica de seguridad habitual. Ayuda a reducir la cantidad de ataques automatizados de fuerza bruta provenientes de bots maliciosos que escanean constantemente Internet en busca de servidores que escuchen en el puerto `22`.
+
+## Soporte
+
+Si tienes problemas para conectarte, ponte en contacto con nuestro equipo de soporte para recibir ayuda.
