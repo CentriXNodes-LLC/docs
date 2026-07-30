@@ -96,5 +96,8 @@
       "discord": "https://discord.gg/centrixnodes",
       "github": "https://github.com/CentrixNodes-LLC"
     }
+  },
+  "icons": {
+    "library": "tabler"
   }
 }
