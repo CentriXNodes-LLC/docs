@@ -52,7 +52,7 @@
                 "pages": [
                   "windows-vps/add-user-rdp",
                   "windows-vps/fivem-server-setup",
-                  "sftp-setup-win",
+                  "windows-vps/setup-sftp",
                   "windows-vps/mariadb-setup"
                 ]
               },
