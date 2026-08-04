@@ -9,7 +9,7 @@
   },
   "favicon": {
     "light": "/images/Favicon03.svg",
-    "dark": "/images/Favicon03.svg"
+    "dark": "/images/Favicon02.svg"
   },
   "navigation": {
     "tabs": [
@@ -52,6 +52,7 @@
                 "pages": [
                   "windows-vps/add-user-rdp",
                   "windows-vps/fivem-server-setup",
+                  "untitled-page",
                   "windows-vps/mariadb-setup"
                 ]
               },

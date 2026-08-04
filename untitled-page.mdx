@@ -1,0 +1,134 @@
+---
+title: "Setting Up SFTP (FileZilla or WinSCP Access)"
+---
+
+**Supported OS:** Windows Server 2022, Windows Server 2019, and Windows 10 (Build 1809 and later).
+
+## Step 1: Install OpenSSH Server
+
+You can install the SFTP server right from the Apps and Features section:
+
+1. Go to **Windows Settings \> Apps**.
+2. Click on **Optional features** (under the Apps & features menu).
+
+<Frame>
+  ![Untitled](/images/Untitled.png "Untitled")
+</Frame>
+
+3. Look or search for **OpenSSH Server**.
+4. If it is not already installed, click **Add a feature**, search for "OpenSSH Server", and install it.
+
+---
+
+## Step 2: Create a Dedicated SFTP User
+
+To prevent users from logging in with an Administrator account, create a dedicated standard user specifically for SFTP access. You can do this using the graphical interface or the terminal.
+
+### Option A: The Visual Way (GUI)
+
+1. Press `Win + R` on your keyboard, type `lusrmgr.msc`, and press **Enter**.
+2. In the left pane, click on the **Users** folder.
+3. Right-click in the empty space in the middle pane and select **New User...**
+4. Enter a **User name** (e.g., `sftpuser1`) and a strong password.
+5. Uncheck _“User must change password at next logon”_ and check _“Password never expires”_.
+6. Click **Create**, then click **Close**.
+
+### Option B: The Terminal Way (PowerShell)
+
+Run this PowerShell command as **Administrator**:
+
+```powershell
+New-LocalUser -Name "sftpuser1" -Description "User for SFTP Access"
+```
+
+_(You will be prompted to set a password for this user)._
+
+---
+
+## Step 3: Configure the Server (Custom Port, Block Admin, Jail User)
+
+We need to configure the server to use port `2022` to mitigate automated brute-force attacks, explicitly block the Administrator account, and lock your new user into a specific folder.
+
+1. Browse to the hidden directory `C:\ProgramData\ssh`.
+2. Open the `sshd_config` file in **Notepad** (run Notepad as Administrator).
+3. **Change the Port:** Locate the line `#Port 22`. Remove the `#` and change `22` to `2022`:
+
+```text
+Port 2022
+```
+
+4. **Block Administrators:** Add the following lines near the top of the file to deny SSH access to any admin accounts:
+
+```text
+DenyUsers Administrator
+DenyGroups Administrators
+```
+
+5. **Lock Down the SFTP User (Chroot):** Scroll to the very bottom of the file and add the following block. This restricts the user to SFTP only (disabling remote command-line access) and locks them into `E:\SFTP` (or your preferred path).
+
+```text
+Match User sftpuser1
+    AllowTcpForwarding no
+    PermitTTY no
+    AllowAgentForwarding no
+    X11Forwarding no
+    ForceCommand internal-sftp
+    ChrootDirectory E:\SFTP
+```
+
+6. Save and close the `sshd_config` file.
+
+---
+
+## Step 4: Allow Custom Port (2022) Through the Firewall
+
+Since your VPS already has a static public IP, you just need to allow inbound traffic on your new custom port.
+
+Run the following PowerShell command as **Administrator**:
+
+```powershell
+New-NetFirewallRule -Name sshd_custom -DisplayName 'OpenSSH SFTP Server (Port 2022)' -Enabled True -Direction Inbound -Protocol TCP -Action Allow -LocalPort 2022 -Program "C:\Windows\System32\OpenSSH\sshd.exe"
+```
+
+---
+
+## Step 5: Start & Automate OpenSSH Services
+
+Now that the config and firewall are ready, start the service so it applies your new settings.
+
+1. Open the Windows **Services** app (`services.msc`).
+2. Locate the following two services:
+
+- **OpenSSH Authentication Agent**
+- **OpenSSH SSH Server**
+
+3. Right-click each service, go to **Properties**, and change the **Startup type** to **Automatic**.
+4. Click **Start** for both services.
+
+_(If you only plan to use passwords, you are done! You can now connect via your SFTP client using your VPS IP, port 2022, and your new user credentials)._
+
+---
+
+## Step 6: Configure Key Authentication (Optional but Recommended)
+
+For maximum security on a public-facing VPS, you can use SSH keys instead of passwords. If you choose to do this, follow these steps:
+
+1. **Disable Password Logins:** Open `sshd_config` again, find `PasswordAuthentication yes`, and change it to:
+
+```text
+PasswordAuthentication no
+```
+
+2. **Generate Keys:** Open PowerShell as your `sftpuser1` (or generate them locally and move them) and run:
+
+```powershell
+ssh-keygen
+```
+
+This generates a key pair in `C:\Users\sftpuser1\.ssh\`. 3. **Authorize the Key:**
+
+- In the `.ssh` folder, create a new text file and paste the contents of `id_rsa.pub` into it.
+- Save and rename the file to exactly `authorized_keys` (remove the `.txt` extension).
+
+4. **Restart the Service:** Restart the **OpenSSH SSH Server** service to apply the password-denial rule.
+5. **Connect:** The `id_rsa` file is your private key. Keep it secure on your local machine and use it in your SFTP client (like FileZilla) instead of a password to connect to your VPS.
